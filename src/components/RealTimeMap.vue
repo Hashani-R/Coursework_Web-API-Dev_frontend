@@ -77,7 +77,7 @@ const fetchTrainsList = async () => {
   try {
     if (selectedStationId.value) {
       // Fetch routes associated with the selected station
-      const routeResponse = await fetch('http://localhost:3000/api/train-routes');
+      const routeResponse = await fetch('http://34.238.252.143/api/train-routes');
       const routes = await routeResponse.json();
       const filteredRoutes = routes.filter(route => route.start_station_id === selectedStationId.value);
 
@@ -85,12 +85,12 @@ const fetchTrainsList = async () => {
         const routeIds = filteredRoutes.map(route => route.route_id);
         
         // Fetch schedules for the selected routes
-        const scheduleResponse = await fetch('http://localhost:3000/api/schedules');
+        const scheduleResponse = await fetch('http://34.238.252.143/api/schedules');
         const schedules = await scheduleResponse.json();
         const filteredSchedules = schedules.filter(schedule => routeIds.includes(schedule.route_id));
 
         // Fetch all trains to get train names
-        const trainResponse = await fetch('http://localhost:3000/api/trains');
+        const trainResponse = await fetch('http://34.238.252.143/api/trains');
         const trainsData = await trainResponse.json();
 
         // Get train details from filtered schedules, including train_name
@@ -133,7 +133,7 @@ async function fetchTrainLocation2(train_id) {
     if (train_id == null) {
       //code
     } else {
-      const response = await fetch('http://localhost:3000/api/real-location/'+train_id);
+      const response = await fetch('http://34.238.252.143/api/real-location/'+train_id);
       const data = await response.json();
       if (data && data.longitude && data.latitude) {
         const { longitude, latitude } = data;
@@ -152,7 +152,7 @@ async function fetchTrainLocation2(train_id) {
 
 const fetchTrains = async () => {
   try {
-    const response = await fetch('http://localhost:3000/api/trains');
+    const response = await fetch('http://34.238.252.143/api/trains');
     const data = await response.json();
     trains.value = data;
   } catch (error) {
@@ -162,7 +162,7 @@ const fetchTrains = async () => {
 
 const fetchStations = async () => {
   try {
-    const response = await fetch('http://localhost:3000/api/stations');
+    const response = await fetch('http://34.238.252.143/api/stations');
     const data = await response.json();
     stations.value = data;
   } catch (error) {
@@ -194,7 +194,7 @@ const fetchTrainLocation = async () => {
     if (selectedTrainId.value == null) {
       //code
     } else {
-      const response = await fetch('http://localhost:3000/api/real-location/'+selectedTrainId.value);
+      const response = await fetch('http://34.238.252.143/api/real-location/'+selectedTrainId.value);
       const data = await response.json();
       if (data && data.longitude && data.latitude) {
         const { longitude, latitude } = data;
